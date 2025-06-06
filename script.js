@@ -5,18 +5,25 @@ let started = false;
 let level = 0;
 let canClick = false;
 let hintUsed = false;
+let highScore = 0;
+let firstGameOver = false;
 
 const h2 = document.getElementById("status");
 const h3 = document.getElementById("level-title");
 const restartBtn = document.getElementById("restart-btn");
 const hintBtn = document.getElementById("hint-btn");
+const startBtn = document.getElementById("start-btn");
 
-document.addEventListener("keypress", () => {
+// Start button event - only on first game start
+startBtn.addEventListener("click", () => {
   if (!started) {
+    startBtn.style.display = "none";   // Hide start button permanently after first start
+    restartBtn.style.display = "inline-block"; // Show restart button after game started
     startGame();
   }
 });
 
+// Restart button event - restart game after game over
 restartBtn.addEventListener("click", () => {
   if (!started) {
     startGame();
@@ -41,9 +48,8 @@ function startGame() {
   userseq = [];
   level = 0;
   hintUsed = false;
-  h2.innerText = "Game is started";
-  h3.innerText = "Level : 0";
-  restartBtn.style.display = "none";
+  h2.innerText = "Game started! Watch the sequence";
+  updateLevelDisplay();
   hintBtn.disabled = true;
   levelUp();
 }
@@ -52,7 +58,7 @@ function levelUp() {
   userseq = [];
   level++;
   hintUsed = false;
-  h3.innerText = `Level : ${level}`;
+  updateLevelDisplay();
   hintBtn.disabled = false;
 
   const randColor = btns[Math.floor(Math.random() * 4)];
@@ -60,10 +66,14 @@ function levelUp() {
 
   playNewColor(() => {
     canClick = true;
+    h2.innerText = "Your turn! Repeat the sequence";
   });
 }
 
-// Play ONLY the new color added at the end of gameseq
+function updateLevelDisplay() {
+  h3.innerHTML = `<span class="level">Level: ${level}</span> | <span class="high-score">High Score: ${highScore}</span>`;
+}
+
 function playNewColor(callback) {
   canClick = false;
   const color = gameseq[gameseq.length - 1];
@@ -81,7 +91,6 @@ function playNewColor(callback) {
   }, speed);
 }
 
-// Play full sequence - used only for hint
 function playFullSequence(callback) {
   let i = 0;
 
@@ -141,9 +150,21 @@ function checkAnswer(index) {
     setTimeout(() => {
       document.body.style.backgroundColor = "#f0f0f0";
     }, 500);
-    h2.innerText = `Game Over! Your score is: ${level}`;
-    h3.innerText = "Press any key or Restart to try again.";
-    restartBtn.style.display = "block";
+
+    if (level > highScore) {
+      highScore = level;
+    }
+
+    h2.innerText = `Game Over! Your score: ${level}`;
+    updateLevelDisplay();
+
+    // First game over: hide start button forever
+    firstGameOver = true;
+    startBtn.style.display = "none";
+
+    // Show restart button for future games
+    restartBtn.style.display = "inline-block";
+
     hintBtn.disabled = true;
     started = false;
     canClick = false;
@@ -165,3 +186,4 @@ function handleButtonPress() {
 document.querySelectorAll(".btn").forEach(btn => {
   btn.addEventListener("click", handleButtonPress);
 });
+
