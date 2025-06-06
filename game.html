@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simon Says Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>Simon Says Game</h1>
+    <h2 id="status">Press any key to start the game</h2>
+    <h3 id="level-title">Level : 0</h3>
+
+    <div class="btn-container">
+      <div class="line-one">
+        <button class="btn red" id="red">1</button>
+        <button class="btn yellow" id="yellow">2</button>
+      </div>
+      <div class="line-two">
+        <button class="btn blue" id="blue">3</button>
+        <button class="btn purple" id="purple">4</button>
+      </div>
+    </div>
+     <div class="button-row">
+        <button id="hint-btn" disabled>Hint</button>
+        <button id="restart-btn" style="display:none;">Restart Game</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

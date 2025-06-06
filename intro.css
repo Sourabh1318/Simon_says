@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #1a1a1a, #000000);
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.scene {
+  width: 90vw;
+  height: 80vh;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.3));
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #171515;
+  border: 2px solid #03dac6;
+  backface-visibility: hidden;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(3, 218, 198, 0.2);
+}
+
+.face h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  animation: colorPulse 6s infinite;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.face p {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+@keyframes colorPulse {
+  0%   { color: #ff5252; }
+  25%  { color: #ffca28; }
+  50%  { color: #42a5f5; }
+  75%  { color: #7e57c2; }
+  100% { color: #ff5252; }
+}
+
+.squares {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.square {
+  width: 55px;
+  height: 55px;
+  border-radius: 15%;
+  animation: bounce 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.red    { background: #ef5350; animation-delay: 0s; }
+.yellow { background: #ffeb3b; animation-delay: 0.3s; }
+.blue   { background: #42a5f5; animation-delay: 0.6s; }
+.purple { background: #ab47bc; animation-delay: 0.9s; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-25px); }
+}
+
+.nav-btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.6rem;
+  font-family: 'Press Start 2P', monospace;
+  background: #03dac6;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 1rem;
+  box-shadow: 0 0 10px #03dac6;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #00bfa5;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Developer credit styling */
+.developer-credit {
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    bottom: 15px;
+}
+
+
+.front  { transform: rotateY(0deg) translateZ(300px); }
+.right  { transform: rotateY(90deg) translateZ(300px); }
+.back   { transform: rotateY(180deg) translateZ(300px); }

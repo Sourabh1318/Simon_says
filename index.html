@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simon Says - Intro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="intro.css" />
+</head>
+<body>
+  <div class="scene">
+    <div class="cube" id="cube">
+      <div class="face front">
+        <h1>🎮 Welcome to Simon Says</h1>
+        <p>Get ready to test your memory<br>in this color & sound game challenge.</p>
+        <div class="squares">
+          <div class="square red"></div>
+          <div class="square yellow"></div>
+          <div class="square blue"></div>
+          <div class="square purple"></div>
+        </div>
+        <button class="nav-btn">Next</button>
+      </div>
+      <div class="face right">
+        <h1>🧠 About the Game</h1>
+        <p>Simon Says flashes a pattern.<br>You must repeat it in the right order.<br>It gets faster every round!</p>
+        
+          <!-- Developer credit -->
+         <div class="developer-credit">Developed by Sourabh Tiwari</div>
+        <button class="nav-btn">Next</button>
+      </div>
+      <div class="face back">
+        <h1>📜 Rules & Start</h1>
+        <p>✅ Watch carefully.<br>✅ Repeat correctly.<br>✅ Use hint wisely.<br>⛔ One wrong move = Game Over!</p>
+        <button class="nav-btn" id="start-btn">Start Game</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="intro-audio" src="https://freesound.org/data/previews/66/66717_931655-lq.mp3" muted></audio>
+
+  <script src="intro.js"></script>
+</body>
+</html>
